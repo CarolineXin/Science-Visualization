@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>雷达图 - Taiwan</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Favicons -->
+  <link href="../assets/" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Jul 27 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="../index.html" class="logo d-flex align-items-center">
+        <img src="../assets/img/科学.png" alt="">
+        <span class="d-none d-lg-block">科学分工</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../index.html">
+          <i class="bi bi-person"></i>
+          <span>主页</span>
+        </a>
+      </li><!-- End Home page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>地图可视化</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="../资源.html">
+              <i class="bi bi-circle"></i><span>资源</span>
+            </a>
+          </li>
+          <li>
+            <a href="../经济.html">
+              <i class="bi bi-circle"></i><span>经济</span>
+            </a>
+          </li>
+          <li>
+            <a href="../地方问题.html">
+              <i class="bi bi-circle"></i><span>地方问题</span>
+            </a>
+          </li>
+          <li>
+            <a href="../国家政策.html">
+              <i class="bi bi-circle"></i><span>国家政策</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-target="#radar-nav" data-bs-toggle="collapse" href="#">
+          <i class="bx bx-radar"></i><span>雷达图可视化</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="radar-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="../Example.html">
+              <i class="bi bi-circle"></i><span>示例</span>
+            </a>
+          </li>
+          <li>
+            <a href="../search.html" class="active">
+              <i class="bi bi-circle"></i><span>检索</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End radar Nav -->
+      </ul>
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>检索结果</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">主页</a></li>
+          <li class="breadcrumb-item">雷达图</li>
+          <li class="breadcrumb-item active">检索</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <p>数据经对数变换处理。<span class="text-muted">Data displayed in the radar chart has been transformed using a logarithmic scale to reduce the differences in scale.</span> </p>
+
+    <section class="section">
+      <div class="row">
+
+        <div>
+          <div class="card" id="card1">
+            <div class="card-body">
+              <h5 class="card-title">Taiwan</h5>
+              <div class="text-center">
+              <div class="position-relative">
+              <!-- Radar Chart -->
+              <div id="radarPlot"></div>
+              <input type="range" min="0" max="44" value="0" id="yearSlider" style="width: 100%;">
+              <p id="yearLabel">Year: 1973</p>
+              <script>
+                    const countryData = [{'Country': 'Taiwan', 'year': 1973, 'data': [{'axis': 'Arts and Humanities', 'value': 12}, {'axis': 'Engineering', 'value': 299}, {'axis': 'Medical Sciences', 'value': 2389}, {'axis': 'Natural Sciences', 'value': 917}, {'axis': 'Social Sciences', 'value': 244}]}, {'Country': 'Taiwan', 'year': 1974, 'data': [{'axis': 'Arts and Humanities', 'value': 6}, {'axis': 'Engineering', 'value': 260}, {'axis': 'Medical Sciences', 'value': 1981}, {'axis': 'Natural Sciences', 'value': 975}, {'axis': 'Social Sciences', 'value': 309}]}, {'Country': 'Taiwan', 'year': 1975, 'data': [{'axis': 'Arts and Humanities', 'value': 12}, {'axis': 'Engineering', 'value': 260}, {'axis': 'Medical Sciences', 'value': 2272}, {'axis': 'Natural Sciences', 'value': 1338}, {'axis': 'Social Sciences', 'value': 215}]}, {'Country': 'Taiwan', 'year': 1976, 'data': [{'axis': 'Arts and Humanities', 'value': 66}, {'axis': 'Engineering', 'value': 260}, {'axis': 'Medical Sciences', 'value': 2184}, {'axis': 'Natural Sciences', 'value': 1526}, {'axis': 'Social Sciences', 'value': 694}]}, {'Country': 'Taiwan', 'year': 1977, 'data': [{'axis': 'Arts and Humanities', 'value': 158}, {'axis': 'Engineering', 'value': 364}, {'axis': 'Medical Sciences', 'value': 1928}, {'axis': 'Natural Sciences', 'value': 2203}, {'axis': 'Social Sciences', 'value': 480}]}, {'Country': 'Taiwan', 'year': 1978, 'data': [{'axis': 'Arts and Humanities', 'value': 12}, {'axis': 'Engineering', 'value': 715}, {'axis': 'Medical Sciences', 'value': 2685}, {'axis': 'Natural Sciences', 'value': 2359}, {'axis': 'Social Sciences', 'value': 478}]}, {'Country': 'Taiwan', 'year': 1979, 'data': [{'axis': 'Arts and Humanities', 'value': 32}, {'axis': 'Engineering', 'value': 676}, {'axis': 'Medical Sciences', 'value': 2776}, {'axis': 'Natural Sciences', 'value': 1881}, {'axis': 'Social Sciences', 'value': 574}]}, {'Country': 'Taiwan', 'year': 1980, 'data': [{'axis': 'Arts and Humanities', 'value': 78}, {'axis': 'Engineering', 'value': 793}, {'axis': 'Medical Sciences', 'value': 3589}, {'axis': 'Natural Sciences', 'value': 2134}, {'axis': 'Social Sciences', 'value': 693}]}, {'Country': 'Taiwan', 'year': 1981, 'data': [{'axis': 'Arts and Humanities', 'value': 36}, {'axis': 'Engineering', 'value': 780}, {'axis': 'Medical Sciences', 'value': 3317}, {'axis': 'Natural Sciences', 'value': 2437}, {'axis': 'Social Sciences', 'value': 553}]}, {'Country': 'Taiwan', 'year': 1982, 'data': [{'axis': 'Arts and Humanities', 'value': 104}, {'axis': 'Engineering', 'value': 1027}, {'axis': 'Medical Sciences', 'value': 3818}, {'axis': 'Natural Sciences', 'value': 2445}, {'axis': 'Social Sciences', 'value': 565}]}, {'Country': 'Taiwan', 'year': 1983, 'data': [{'axis': 'Arts and Humanities', 'value': 42}, {'axis': 'Engineering', 'value': 1326}, {'axis': 'Medical Sciences', 'value': 4496}, {'axis': 'Natural Sciences', 'value': 3125}, {'axis': 'Social Sciences', 'value': 610}]}, {'Country': 'Taiwan', 'year': 1984, 'data': [{'axis': 'Arts and Humanities', 'value': 132}, {'axis': 'Engineering', 'value': 1677}, {'axis': 'Medical Sciences', 'value': 6388}, {'axis': 'Natural Sciences', 'value': 3325}, {'axis': 'Social Sciences', 'value': 642}]}, {'Country': 'Taiwan', 'year': 1985, 'data': [{'axis': 'Arts and Humanities', 'value': 86}, {'axis': 'Engineering', 'value': 2366}, {'axis': 'Medical Sciences', 'value': 8701}, {'axis': 'Natural Sciences', 'value': 3845}, {'axis': 'Social Sciences', 'value': 832}]}, {'Country': 'Taiwan', 'year': 1986, 'data': [{'axis': 'Arts and Humanities', 'value': 56}, {'axis': 'Engineering', 'value': 4251}, {'axis': 'Medical Sciences', 'value': 8334}, {'axis': 'Natural Sciences', 'value': 4281}, {'axis': 'Social Sciences', 'value': 739}]}, {'Country': 'Taiwan', 'year': 1987, 'data': [{'axis': 'Arts and Humanities', 'value': 60}, {'axis': 'Engineering', 'value': 5473}, {'axis': 'Medical Sciences', 'value': 11759}, {'axis': 'Natural Sciences', 'value': 5351}, {'axis': 'Social Sciences', 'value': 888}]}, {'Country': 'Taiwan', 'year': 1988, 'data': [{'axis': 'Arts and Humanities', 'value': 84}, {'axis': 'Engineering', 'value': 6357}, {'axis': 'Medical Sciences', 'value': 15283}, {'axis': 'Natural Sciences', 'value': 6565}, {'axis': 'Social Sciences', 'value': 960}]}, {'Country': 'Taiwan', 'year': 1989, 'data': [{'axis': 'Arts and Humanities', 'value': 32}, {'axis': 'Engineering', 'value': 7839}, {'axis': 'Medical Sciences', 'value': 16910}, {'axis': 'Natural Sciences', 'value': 7871}, {'axis': 'Social Sciences', 'value': 930}]}, {'Country': 'Taiwan', 'year': 1990, 'data': [{'axis': 'Arts and Humanities', 'value': 42}, {'axis': 'Engineering', 'value': 10907}, {'axis': 'Medical Sciences', 'value': 19201}, {'axis': 'Natural Sciences', 'value': 9219}, {'axis': 'Social Sciences', 'value': 1342}]}, {'Country': 'Taiwan', 'year': 1991, 'data': [{'axis': 'Arts and Humanities', 'value': 12}, {'axis': 'Engineering', 'value': 12896}, {'axis': 'Medical Sciences', 'value': 24079}, {'axis': 'Natural Sciences', 'value': 11960}, {'axis': 'Social Sciences', 'value': 1331}]}, {'Country': 'Taiwan', 'year': 1992, 'data': [{'axis': 'Arts and Humanities', 'value': 50}, {'axis': 'Engineering', 'value': 15418}, {'axis': 'Medical Sciences', 'value': 33856}, {'axis': 'Natural Sciences', 'value': 14125}, {'axis': 'Social Sciences', 'value': 1324}]}, {'Country': 'Taiwan', 'year': 1993, 'data': [{'axis': 'Arts and Humanities', 'value': 88}, {'axis': 'Engineering', 'value': 18564}, {'axis': 'Medical Sciences', 'value': 36618}, {'axis': 'Natural Sciences', 'value': 16723}, {'axis': 'Social Sciences', 'value': 1386}]}, {'Country': 'Taiwan', 'year': 1994, 'data': [{'axis': 'Arts and Humanities', 'value': 24}, {'axis': 'Engineering', 'value': 23660}, {'axis': 'Medical Sciences', 'value': 47039}, {'axis': 'Natural Sciences', 'value': 19276}, {'axis': 'Social Sciences', 'value': 1646}]}, {'Country': 'Taiwan', 'year': 1995, 'data': [{'axis': 'Arts and Humanities', 'value': 66}, {'axis': 'Engineering', 'value': 25532}, {'axis': 'Medical Sciences', 'value': 57649}, {'axis': 'Natural Sciences', 'value': 20483}, {'axis': 'Social Sciences', 'value': 2204}]}, {'Country': 'Taiwan', 'year': 1996, 'data': [{'axis': 'Arts and Humanities', 'value': 88}, {'axis': 'Engineering', 'value': 27469}, {'axis': 'Medical Sciences', 'value': 70418}, {'axis': 'Natural Sciences', 'value': 23175}, {'axis': 'Social Sciences', 'value': 2274}]}, {'Country': 'Taiwan', 'year': 1997, 'data': [{'axis': 'Arts and Humanities', 'value': 96}, {'axis': 'Engineering', 'value': 29510}, {'axis': 'Medical Sciences', 'value': 72527}, {'axis': 'Natural Sciences', 'value': 24639}, {'axis': 'Social Sciences', 'value': 2197}]}, {'Country': 'Taiwan', 'year': 1998, 'data': [{'axis': 'Arts and Humanities', 'value': 158}, {'axis': 'Engineering', 'value': 30173}, {'axis': 'Medical Sciences', 'value': 80437}, {'axis': 'Natural Sciences', 'value': 26807}, {'axis': 'Social Sciences', 'value': 2145}]}, {'Country': 'Taiwan', 'year': 1999, 'data': [{'axis': 'Arts and Humanities', 'value': 168}, {'axis': 'Engineering', 'value': 32032}, {'axis': 'Medical Sciences', 'value': 82698}, {'axis': 'Natural Sciences', 'value': 28706}, {'axis': 'Social Sciences', 'value': 2577}]}, {'Country': 'Taiwan', 'year': 2000, 'data': [{'axis': 'Arts and Humanities', 'value': 124}, {'axis': 'Engineering', 'value': 34541}, {'axis': 'Medical Sciences', 'value': 88147}, {'axis': 'Natural Sciences', 'value': 30432}, {'axis': 'Social Sciences', 'value': 2770}]}, {'Country': 'Taiwan', 'year': 2001, 'data': [{'axis': 'Arts and Humanities', 'value': 154}, {'axis': 'Engineering', 'value': 37323}, {'axis': 'Medical Sciences', 'value': 98014}, {'axis': 'Natural Sciences', 'value': 33991}, {'axis': 'Social Sciences', 'value': 3335}]}, {'Country': 'Taiwan', 'year': 2002, 'data': [{'axis': 'Arts and Humanities', 'value': 166}, {'axis': 'Engineering', 'value': 37843}, {'axis': 'Medical Sciences', 'value': 107049}, {'axis': 'Natural Sciences', 'value': 35860}, {'axis': 'Social Sciences', 'value': 3951}]}, {'Country': 'Taiwan', 'year': 2003, 'data': [{'axis': 'Arts and Humanities', 'value': 280}, {'axis': 'Engineering', 'value': 44330}, {'axis': 'Medical Sciences', 'value': 116956}, {'axis': 'Natural Sciences', 'value': 37624}, {'axis': 'Social Sciences', 'value': 4151}]}, {'Country': 'Taiwan', 'year': 2004, 'data': [{'axis': 'Arts and Humanities', 'value': 180}, {'axis': 'Engineering', 'value': 47879}, {'axis': 'Medical Sciences', 'value': 134044}, {'axis': 'Natural Sciences', 'value': 42748}, {'axis': 'Social Sciences', 'value': 4820}]}, {'Country': 'Taiwan', 'year': 2005, 'data': [{'axis': 'Arts and Humanities', 'value': 192}, {'axis': 'Engineering', 'value': 54873}, {'axis': 'Medical Sciences', 'value': 145062}, {'axis': 'Natural Sciences', 'value': 47693}, {'axis': 'Social Sciences', 'value': 6370}]}, {'Country': 'Taiwan', 'year': 2006, 'data': [{'axis': 'Arts and Humanities', 'value': 186}, {'axis': 'Engineering', 'value': 64207}, {'axis': 'Medical Sciences', 'value': 156774}, {'axis': 'Natural Sciences', 'value': 54219}, {'axis': 'Social Sciences', 'value': 7881}]}, {'Country': 'Taiwan', 'year': 2007, 'data': [{'axis': 'Arts and Humanities', 'value': 392}, {'axis': 'Engineering', 'value': 66534}, {'axis': 'Medical Sciences', 'value': 166424}, {'axis': 'Natural Sciences', 'value': 57230}, {'axis': 'Social Sciences', 'value': 10228}]}, {'Country': 'Taiwan', 'year': 2008, 'data': [{'axis': 'Arts and Humanities', 'value': 630}, {'axis': 'Engineering', 'value': 73710}, {'axis': 'Medical Sciences', 'value': 192858}, {'axis': 'Natural Sciences', 'value': 61314}, {'axis': 'Social Sciences', 'value': 14555}]}, {'Country': 'Taiwan', 'year': 2009, 'data': [{'axis': 'Arts and Humanities', 'value': 932}, {'axis': 'Engineering', 'value': 78364}, {'axis': 'Medical Sciences', 'value': 197117}, {'axis': 'Natural Sciences', 'value': 64388}, {'axis': 'Social Sciences', 'value': 17296}]}, {'Country': 'Taiwan', 'year': 2010, 'data': [{'axis': 'Arts and Humanities', 'value': 1026}, {'axis': 'Engineering', 'value': 80977}, {'axis': 'Medical Sciences', 'value': 216163}, {'axis': 'Natural Sciences', 'value': 65303}, {'axis': 'Social Sciences', 'value': 18713}]}, {'Country': 'Taiwan', 'year': 2011, 'data': [{'axis': 'Arts and Humanities', 'value': 1196}, {'axis': 'Engineering', 'value': 86450}, {'axis': 'Medical Sciences', 'value': 231781}, {'axis': 'Natural Sciences', 'value': 70649}, {'axis': 'Social Sciences', 'value': 22990}]}, {'Country': 'Taiwan', 'year': 2012, 'data': [{'axis': 'Arts and Humanities', 'value': 1194}, {'axis': 'Engineering', 'value': 87321}, {'axis': 'Medical Sciences', 'value': 244060}, {'axis': 'Natural Sciences', 'value': 70220}, {'axis': 'Social Sciences', 'value': 22232}]}, {'Country': 'Taiwan', 'year': 2013, 'data': [{'axis': 'Arts and Humanities', 'value': 1172}, {'axis': 'Engineering', 'value': 92378}, {'axis': 'Medical Sciences', 'value': 252323}, {'axis': 'Natural Sciences', 'value': 69306}, {'axis': 'Social Sciences', 'value': 21194}]}, {'Country': 'Taiwan', 'year': 2014, 'data': [{'axis': 'Arts and Humanities', 'value': 1116}, {'axis': 'Engineering', 'value': 88426}, {'axis': 'Medical Sciences', 'value': 253706}, {'axis': 'Natural Sciences', 'value': 66560}, {'axis': 'Social Sciences', 'value': 21046}]}, {'Country': 'Taiwan', 'year': 2015, 'data': [{'axis': 'Arts and Humanities', 'value': 1304}, {'axis': 'Engineering', 'value': 81237}, {'axis': 'Medical Sciences', 'value': 260681}, {'axis': 'Natural Sciences', 'value': 61196}, {'axis': 'Social Sciences', 'value': 19313}]}, {'Country': 'Taiwan', 'year': 2016, 'data': [{'axis': 'Arts and Humanities', 'value': 1276}, {'axis': 'Engineering', 'value': 82420}, {'axis': 'Medical Sciences', 'value': 253220}, {'axis': 'Natural Sciences', 'value': 59146}, {'axis': 'Social Sciences', 'value': 19305}]}, {'Country': 'Taiwan', 'year': 2017, 'data': [{'axis': 'Arts and Humanities', 'value': 1050}, {'axis': 'Engineering', 'value': 74230}, {'axis': 'Medical Sciences', 'value': 239036}, {'axis': 'Natural Sciences', 'value': 55744}, {'axis': 'Social Sciences', 'value': 17103}]}];
+                    const yearSlider = document.getElementById('yearSlider');
+                    const yearLabel = document.getElementById('yearLabel');
+
+                    function logTransform(value) {
+                        // Apply log transformation and handle values <= 0 by setting them to a small positive value
+                        return Math.log(value > 0 ? value : 1e-9) + 1;
+                    }
+
+                    function updatePlot(index) {
+                        const currentDataPoint = countryData[index].data;
+                        Plotly.update("radarPlot", {
+                            r: [currentDataPoint.map(d => logTransform(d.value))],
+                            theta: [currentDataPoint.map(d => d.axis)],
+                            name: [countryData[index].year]
+                        });
+                        yearLabel.textContent = "Year: " + countryData[index].year;
+                    }
+
+                    yearSlider.addEventListener('input', function() {
+                        updatePlot(yearSlider.value);
+                    });
+
+                    const maxScaleValue = Math.max(...countryData.map(entry => Math.max(...entry.data.map(d => logTransform(d.value)))));
+                    const plotData = [{
+                        type: 'scatterpolar',
+                        r: countryData[0].data.map(d => logTransform(d.value)),
+                        theta: countryData[0].data.map(d => d.axis),
+                        fill: 'toself',
+                        name: countryData[0].year
+                    }];
+                    const layout = {
+                        title: 'Taiwan',
+                        polar: {
+                            radialaxis: {
+                                visible: true,
+                                range: [0, maxScaleValue] 
+                            }
+                        },
+                        showlegend: true
+                    };
+                    Plotly.newPlot("radarPlot", plotData, layout);
+              </script>
+              <!-- End Radar CHart -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="card" id="card1">
+          <div class="card-body">
+            <h5 class="card-title">数据分析 Data Analysis</h5>
+            <div class="text-left">
+            <div class="position-relative">
+              <p>该雷达图展现了该国学科发展随时间的变化情况。对于数据的对数处理能够弥合尺度上的差异，而较好地反应该国自身学科发展情况。时间轴滑块能够让用户自主选择需要考察的时间段，并展示整体变化趋势。该趋势的成因及影响可以结合诸多领域进行更深入的考察。</p>
+              <p class="text-muted">This radar chart visualizes various metrics for China over different years. The logarithmic transformation provides a more balanced view of metrics, especially when there are significant variances in the original scale. By using the slider, it's possible to observe the evolution of these metrics over time. Note that specific insights would require a deeper understanding of the contextual background of the data.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <section class="section">
+      <div class="row">
+
+        <div class="container mt-4">
+
+          <div class="card">
+              <div class="card-header">
+                  <!-- 搜索栏 -->
+                  <div class="input-group">
+                      <input type="text" class="form-control" id="countryInput" placeholder="China...">
+                      <button class="btn btn-outline-secondary" id="searchButton" type="button">Search</button>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <!-- 卡片内容 -->
+                  <h5 class="card-title" id="cardTitle">单独检索 Individual Search</h5>
+                  <p>请输入您检索国家或地区的英文名。</p>
+                  <p class="card-text text-muted">Please enter the English name of the country or region you are searching for.</p>
+              </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+                <!-- 搜索栏 -->
+                <div class="input-group">
+                    <input type="text" class="form-control" id="countryInput2" placeholder="China...">
+                    <input type="text" class="form-control" id="countryInput3" placeholder="Germany...">
+                    <button class="btn btn-outline-secondary" id="searchButton2" type="button">Search</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- 卡片内容 -->
+                <h5 class="card-title" id="cardTitle2">对比检索 Compare Search</h5>
+                <p>请输入您检索国家或地区的英文名。注意：时间轴范围由左侧国家或地区决定。</p>
+                <p class="card-text text-muted">Please enter the English name of the country or region you are searching for. Note: The time axis range is determined by the left country or region.</p>
+            </div>
+        </div>
+        
+      </div>
+      
+      <script>
+          const searchButton = document.getElementById("searchButton");
+          const countryInput = document.getElementById("countryInput");
+          const cardTitle = document.getElementById("cardTitle");
+      
+          searchButton.addEventListener("click", function() {
+              const inputText = countryInput.value.trim() + ".html";
+              
+              // 根据输入文本进行页面跳转或修改标题颜色
+              var countrylist = ['Afghanistan.html', 'Albania.html', 'Algeria.html', 'Andorra.html', 'Angola.html', 'Antarctica.html', 'Antigua & Barbuda.html', 'Argentina.html', 'Armenia.html', 'Australia.html', 'Austria.html', 'Azerbaijan.html', 'Bahamas.html', 'Bahrain.html', 'Bangladesh.html', 'Barbados.html', 'Belgium.html', 'Belize.html', 'Benin.html', 'Bermuda.html', 'Bhutan.html', 'Bolivia.html', 'Bophuthatswana.html', 'Bosnia & Herzegovina.html', 'Botswana.html', 'Brazil.html', 'Brunei.html', 'Bulgaria.html', 'Burkina Faso.html', 'Burma.html', 'Burundi.html', 'Byelarus.html', 'Cambodia.html', 'Cameroon.html', 'Canada.html', 'Cape Verde.html', 'Central African Republic.html', 'Ceylon.html', 'Chad.html', 'Chile.html', 'China.html', 'Ciskei.html', 'Colombia.html', 'Comoros.html', 'Congo.html', 'Cook Islands.html', 'Costa Rica.html', 'Crimea.html', 'Croatia.html', 'Cuba.html', 'Cyprus.html', 'Czech Republic.html', 'Czechoslovakia.html', 'Dahomey.html', 'Democratic Republic of the Congo.html', 'Denmark.html', 'Djibouti.html', 'Dominica .html', 'Dominican Republic.html', 'Ecuador.html', 'Egypt.html', 'El Salvador.html', 'Equatorial Guinea.html', 'Eritrea.html', 'Estonia.html', 'Ethiopia.html', 'Federated States of Micronesia .html', 'Fiji.html', 'Finland.html', 'France.html', 'French-Guiana.html', 'French-Polynesia.html', 'Gabon.html', 'Gambia.html', 'Georgia.html', 'Germany.html', 'Ghana .html', 'Gilbert & Ellice Islands.html', 'Greece.html', 'Grenada.html', 'Guadeloupe.html', 'Guatemala.html', 'Guinea-Bissau.html', 'Guinea.html', 'Guyana.html', 'Haiti.html', 'Honduras .html', 'Hong-Kong.html', 'Hungary.html', 'Iceland.html', 'India.html', 'Indonesia.html', 'Iran.html', 'Iraq.html', 'Ireland.html', 'Israel.html', 'Italy.html', 'Ivory Coast.html', 'Jamaica.html', 'Japan.html', 'Jordan.html', 'Kazakhstan.html', 'Kenya.html', 'Khmer Republic.html', 'Kiribati.html', 'Kuwait.html', 'Kyrgyzstan.html', 'Laos.html', 'Latvia.html', 'Lebanon .html', 'Lesotho.html', 'Liberia .html', 'Libya.html', 'Liechtenstein.html', 'Lithuania.html', 'Luxembourg.html', 'Macau.html', 'Macedonia.html', 'Madagascar.html', 'Malawi.html', 'Malaysia.html', 'Maldives.html', 'Mali.html', 'Malta.html', 'Marshall Islands.html', 'Mauritania.html', 'Mauritius.html', 'Mexico.html', 'Moldova .html', 'Monaco.html', 'Mongolia.html', 'Montenegro.html', 'Morocco.html', 'Mozambique.html', 'Namibia.html', 'Nauru.html', 'Nepal.html', 'Netherlands-Antilles.html', 'Netherlands.html', 'New Zealand.html', 'New-Caledonia.html', 'Nicaragua.html', 'Niger.html', 'Nigeria.html', 'Niue.html', 'North Korea.html', 'Norway.html', 'Oman.html', 'Pakistan.html', 'Palau.html', 'Palestine.html', 'Panama.html', 'Papua New Guinea.html', 'Paraguay.html', "People's Democratic Republic of Yemen.html", "People's Republic of Congo.html", 'Peru.html', 'Philippines.html', 'Poland.html', 'Portugal.html', 'Qatar.html', 'Republic of Kosovo.html', 'Republic of Serbia.html', 'Reunion.html', 'Rhodesia.html', 'Romania.html', 'Russia.html', 'Rwanda.html', 'Saint-Vincent-et-les-Grenadines.html', 'Samoa.html', 'San Marino.html', 'Sao Tome & Principe.html', 'Saudi Arabia.html', 'Senegal.html', 'Senegambia.html', 'Serbia and Montenegro.html', 'Seychelles.html', 'Sierra Leone.html', 'Singapore.html', 'Slovakia.html', 'Slovenia.html', 'Solomon Islands.html', 'Somalia.html', 'South Africa.html', 'South Korea.html', 'South Sudan.html', 'Spain.html', 'Sri Lanka.html', 'St-Kitts & Nevis .html', 'St-Lucia.html', 'Sudan.html', 'Suriname.html', 'Swaziland.html', 'Sweden.html', 'Switzerland.html', 'Syria.html', 'Taiwan.html', 'Tajikistan.html', 'Tanzania.html', 'Thailand.html', 'Togo.html', 'Tonga.html', 'Transkei.html', 'Trinidad and Tobago.html', 'Tunisia.html', 'Turkey.html', 'Turkmenistan.html', 'Tuvalu.html', 'Uganda.html', 'Ukraine.html', 'Union of Soviet Socialist Republics.html', 'United Arab Emirates.html', 'United Arab Republic.html', 'United Kingdom.html', 'United States.html', 'Uruguay.html', 'Uzbekistan.html', 'Vanuatu.html', 'Vatican.html', 'Venda.html', 'Venezuela.html', 'Vietnam.html', 'Western Sahara.html', 'Yemen Arab Republic.html', 'Yemen.html', 'Yugoslavia.html', 'Zaire.html', 'Zambia.html', 'Zimbabwe.html']
+              
+              if (countrylist.includes(inputText)) {
+                  window.location.href = inputText ; // 根据文件名进行页面跳转
+              } else {
+                  cardTitle.style.color = "purple";
+                  cardTitle.textContent = "抱歉，您输入的国家或地区名有误。";
+              }
+
+          });
+          const searchButton2 = document.getElementById("searchButton2");
+          const countryInput2 = document.getElementById("countryInput2");
+          const countryInput3 = document.getElementById("countryInput3");
+          const cardTitle2 = document.getElementById("cardTitle2");
+      
+          searchButton2.addEventListener("click", function() {
+              
+              // 根据输入文本进行页面跳转或修改标题颜色
+              var countrylist = ['Afghanistan.html', 'Albania.html', 'Algeria.html', 'Andorra.html', 'Angola.html', 'Antarctica.html', 'Antigua & Barbuda.html', 'Argentina.html', 'Armenia.html', 'Australia.html', 'Austria.html', 'Azerbaijan.html', 'Bahamas.html', 'Bahrain.html', 'Bangladesh.html', 'Barbados.html', 'Belgium.html', 'Belize.html', 'Benin.html', 'Bermuda.html', 'Bhutan.html', 'Bolivia.html', 'Bophuthatswana.html', 'Bosnia & Herzegovina.html', 'Botswana.html', 'Brazil.html', 'Brunei.html', 'Bulgaria.html', 'Burkina Faso.html', 'Burma.html', 'Burundi.html', 'Byelarus.html', 'Cambodia.html', 'Cameroon.html', 'Canada.html', 'Cape Verde.html', 'Central African Republic.html', 'Ceylon.html', 'Chad.html', 'Chile.html', 'China.html', 'Ciskei.html', 'Colombia.html', 'Comoros.html', 'Congo.html', 'Cook Islands.html', 'Costa Rica.html', 'Crimea.html', 'Croatia.html', 'Cuba.html', 'Cyprus.html', 'Czech Republic.html', 'Czechoslovakia.html', 'Dahomey.html', 'Democratic Republic of the Congo.html', 'Denmark.html', 'Djibouti.html', 'Dominica .html', 'Dominican Republic.html', 'Ecuador.html', 'Egypt.html', 'El Salvador.html', 'Equatorial Guinea.html', 'Eritrea.html', 'Estonia.html', 'Ethiopia.html', 'Federated States of Micronesia .html', 'Fiji.html', 'Finland.html', 'France.html', 'French-Guiana.html', 'French-Polynesia.html', 'Gabon.html', 'Gambia.html', 'Georgia.html', 'Germany.html', 'Ghana .html', 'Gilbert & Ellice Islands.html', 'Greece.html', 'Grenada.html', 'Guadeloupe.html', 'Guatemala.html', 'Guinea-Bissau.html', 'Guinea.html', 'Guyana.html', 'Haiti.html', 'Honduras .html', 'Hong-Kong.html', 'Hungary.html', 'Iceland.html', 'India.html', 'Indonesia.html', 'Iran.html', 'Iraq.html', 'Ireland.html', 'Israel.html', 'Italy.html', 'Ivory Coast.html', 'Jamaica.html', 'Japan.html', 'Jordan.html', 'Kazakhstan.html', 'Kenya.html', 'Khmer Republic.html', 'Kiribati.html', 'Kuwait.html', 'Kyrgyzstan.html', 'Laos.html', 'Latvia.html', 'Lebanon .html', 'Lesotho.html', 'Liberia .html', 'Libya.html', 'Liechtenstein.html', 'Lithuania.html', 'Luxembourg.html', 'Macau.html', 'Macedonia.html', 'Madagascar.html', 'Malawi.html', 'Malaysia.html', 'Maldives.html', 'Mali.html', 'Malta.html', 'Marshall Islands.html', 'Mauritania.html', 'Mauritius.html', 'Mexico.html', 'Moldova .html', 'Monaco.html', 'Mongolia.html', 'Montenegro.html', 'Morocco.html', 'Mozambique.html', 'Namibia.html', 'Nauru.html', 'Nepal.html', 'Netherlands-Antilles.html', 'Netherlands.html', 'New Zealand.html', 'New-Caledonia.html', 'Nicaragua.html', 'Niger.html', 'Nigeria.html', 'Niue.html', 'North Korea.html', 'Norway.html', 'Oman.html', 'Pakistan.html', 'Palau.html', 'Palestine.html', 'Panama.html', 'Papua New Guinea.html', 'Paraguay.html', "People's Democratic Republic of Yemen.html", "People's Republic of Congo.html", 'Peru.html', 'Philippines.html', 'Poland.html', 'Portugal.html', 'Qatar.html', 'Republic of Kosovo.html', 'Republic of Serbia.html', 'Reunion.html', 'Rhodesia.html', 'Romania.html', 'Russia.html', 'Rwanda.html', 'Saint-Vincent-et-les-Grenadines.html', 'Samoa.html', 'San Marino.html', 'Sao Tome & Principe.html', 'Saudi Arabia.html', 'Senegal.html', 'Senegambia.html', 'Serbia and Montenegro.html', 'Seychelles.html', 'Sierra Leone.html', 'Singapore.html', 'Slovakia.html', 'Slovenia.html', 'Solomon Islands.html', 'Somalia.html', 'South Africa.html', 'South Korea.html', 'South Sudan.html', 'Spain.html', 'Sri Lanka.html', 'St-Kitts & Nevis .html', 'St-Lucia.html', 'Sudan.html', 'Suriname.html', 'Swaziland.html', 'Sweden.html', 'Switzerland.html', 'Syria.html', 'Taiwan.html', 'Tajikistan.html', 'Tanzania.html', 'Thailand.html', 'Togo.html', 'Tonga.html', 'Transkei.html', 'Trinidad and Tobago.html', 'Tunisia.html', 'Turkey.html', 'Turkmenistan.html', 'Tuvalu.html', 'Uganda.html', 'Ukraine.html', 'Union of Soviet Socialist Republics.html', 'United Arab Emirates.html', 'United Arab Republic.html', 'United Kingdom.html', 'United States.html', 'Uruguay.html', 'Uzbekistan.html', 'Vanuatu.html', 'Vatican.html', 'Venda.html', 'Venezuela.html', 'Vietnam.html', 'Western Sahara.html', 'Yemen Arab Republic.html', 'Yemen.html', 'Yugoslavia.html', 'Zaire.html', 'Zambia.html', 'Zimbabwe.html']
+              
+
+              if ((!countryInput2.value) || (!countryInput3.value)) {
+                cardTitle2.style.color = "purple";
+                cardTitle2.textContent = "抱歉，您未输入需要对比的所有国家或地区。";
+              } else if (countrylist.includes(countryInput2.value+".html") && countrylist.includes(countryInput3.value+".html")) {
+                // 根据文件名进行页面跳转
+                localStorage.setItem('country1', countryInput2.value);
+                localStorage.setItem('country2', countryInput3.value);
+                window.location.href = "../compare.html";
+              } else {
+                cardTitle2.style.color = "purple";
+                cardTitle2.textContent = "抱歉，您输入的国家或地区名有误。";
+              }
+
+          });
+      </script>
+
+      </div>
+    </section>
+    
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="../assets/vendor/echarts/echarts.min.js"></script>
+  <script src="../assets/vendor/quill/quill.min.js"></script>
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

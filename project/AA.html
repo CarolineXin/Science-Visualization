@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        
+    </head>
+<style>
+    .tooltip{
+        position: absolute;
+        width: 200px;
+        height: auto;
+        font-family: simsun;
+        font-size: 14px;
+        text-align: center;
+        color: black ;
+        border-width: 2px solid black;
+        background-color: white;
+        border-radius: 5px;
+    }
+     
+    .tooltip:after{ 
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 20%;
+        margin-left: -8px;
+        width: 0;
+        height: 0;
+        border-bottom: 12px solid black;
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+    }
+</style>
+    
+    <body>
+        <script type="text/javascript" src="./原始数据/d3.js"></script>
+        <script type="text/javascript">
+            
+            var w=800;
+            var h=1000;
+        
+            
+            var projection = d3.geoMercator()
+                                
+                                .scale(100)
+                                .translate([w/2,h/2]);
+
+            var path = d3.geoPath()
+                .projection(projection);
+
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width",w)
+                .attr("height",h);
+
+            //添加提示框
+            var tooltip = d3.select("body")
+                            .append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity",0)
+
+            d3.json("AA.json",function(json){
+                svg.selectAll("path")
+                    .data(json.features)
+                    .enter()
+                    .append("path")
+                    .attr("d",path)
+                    .attr("stroke","black")
+                    .style('stroke-width','0.5px')
+                    .style("fill",function(d){
+                        var value  = d.color
+                        return value
+                    })
+                    .on("mouseover",function(d,i){
+                        tooltip.style("opacity",1);
+                        tooltip.html(d.properties.name+"\n"+":" +"\n"+ d.value);
+                        
+                    })
+                    .on("mousemove",function(d){
+                        tooltip.style("left",(d3.event.pageX)+"px")
+                            .style("top",(d3.event.pageY)+"px");
+                        
+                    })
+                    .on("mouseout",function(d){
+                        tooltip.style("opacity",0);
+                    })
+                })
+
+            //图例数组，格式可自定义
+        var data_legend = [
+                {
+                    "name":"0<= RCA <= 0.5",
+                    "color":"rgb(237,248,233)"
+                },
+                {
+                    "name":"0.5 <= RCA < 1",
+                    "color":"rgb(186,228,179)"
+                },
+                {
+                    "name":"1<= RCA < 5",
+                    "color":"rgb(116,196,178)"
+                },
+                {
+                    "name":"5<= RCA < 10",
+                    "color":"rgb(49,163,84)"
+                },
+                {
+                    "name":"RCA >= 10",
+                    "color":"rgb(0,109,44)"
+                }
+            ];  
+        //初始化图例，将data_legend与图例绑定
+        var legend = svg.selectAll("legend") 
+                .data(data_legend)
+                .enter()
+                .append("g")
+                .attr("class", "legend")
+                .attr("transform", function(d, i) { return "translate(-30," + (i * 20 + 30) + ")"; });  //transform属性便是整个图例的坐标
+            
+            //绘制文字后方的颜色框或线
+            legend.append("rect")
+                .attr("x", w - 25) //width是svg的宽度，x属性用来调整位置
+                // .attr("x", (width / 160) * 157)  
+                //或者可以用width的分数来表示，更稳定一些，这是我试出来的，下面同
+                .attr("y", 8)
+                .attr("width", 40)
+                .attr("height", 3) //设低一些就是线，高一些就是面，很好理解
+                .style("fill", function(d){
+                    return d.color
+                });
+            
+            //绘制图例文字
+            legend.append("text")
+                .attr("x", w - 30)
+                // .attr("x", (width / 40) * 39)
+                .attr("y", 15)
+                .style("text-anchor", "end") //样式对齐
+                .text(function(d) { 
+                    return d.name;
+                });
+
+        
+                
+        var title = svg.append("text")
+                        .attr("x", w/2)
+                        .attr("y", 100)
+                        .style("text-anchor", "middle")
+                        .text("Anthropology and Archaeology")
+                                        
+                
+        </script>
+    </body>
+</html>

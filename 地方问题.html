@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>地方问题</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Jul 27 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/科学.png" alt="">
+        <span class="d-none d-lg-block">科学分工</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
+          <i class="bi bi-person"></i>
+          <span>主页</span>
+        </a>
+      </li><!-- End Home page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>地图可视化</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="资源.html">
+              <i class="bi bi-circle"></i><span>资源</span>
+            </a>
+          </li>
+          <li>
+            <a href="经济.html">
+              <i class="bi bi-circle"></i><span>经济</span>
+            </a>
+          </li>
+          <li>
+            <a href="地方问题.html" class="active">
+              <i class="bi bi-circle"></i><span>地方问题</span>
+            </a>
+          </li>
+          <li>
+            <a href="国家政策.html">
+              <i class="bi bi-circle"></i><span>国家政策</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#radar-nav" data-bs-toggle="collapse" href="#">
+          <i class="bx bx-radar"></i><span>雷达图可视化</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="radar-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="Example.html">
+              <i class="bi bi-circle"></i><span>示例</span>
+            </a>
+          </li>
+          <li>
+            <a href="search.html">
+              <i class="bi bi-circle"></i><span>检索</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End radar Nav -->
+      
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>地方问题</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">主页</a></li>
+          <li class="breadcrumb-item">地图</li>
+          <li class="breadcrumb-item active">地方问题</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <p>从农业与食品科学和卫生政策与服务的分布可以看出，地方问题也是研究的驱动力。</p>
+    <p class="text-muted">平均值：RCA=1</p>
+
+    <section class="section">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card" id="card1">
+            <div class="card-body">
+              <h5 class="card-title">农业与食品科学 Agriculture and Food Science</h5>
+
+              <div class="text-center">
+              <div class="position-relative">
+              <!-- Line Chart -->
+              <script type="text/javascript" src="./project/原始数据/d3.js"></script>
+              <script type="text/javascript">
+                  
+                  var w=1500;
+                  var h=800;
+                  var projection = d3.geoMercator()
+                                      .scale(180)
+                                      .translate([w/2,h/2]);
+      
+                  var path = d3.geoPath()
+                      .projection(projection);
+      
+                  var svg = d3.select("#card1")
+                      .append("svg")
+                      .attr("width","100%")
+                      .attr("height",h)
+                      .attr("viewBox","0 0 1500 800");
+      
+                  //添加提示框
+                  var tooltip = d3.select("#card1")
+                                  .append("div")
+                                  .attr("class", "tooltip")
+                                  .style("opacity",0)
+      
+                  d3.json("data/Ag_new.json",function(json){
+                      svg.selectAll("path")
+                          .data(json.features)
+                          .enter()
+                          .append("path")
+                          .attr("d",path)
+                          .attr("stroke","black")
+                          .style('stroke-width','0.5px')
+                          .style("fill",function(d){
+                              var value  = d.color
+                              return value
+                          })
+                          .on("mouseover",function(d,i){
+                              tooltip.style("opacity",1);
+                              tooltip.html(d.properties.name+"\n"+":" +"\n"+ d.value);
+                              
+                          })
+                          .on("mousemove",function(d){
+                              tooltip.style("left",(d3.event.pageX - 360)+"px")
+                                  .style("top",(d3.event.pageY - 140)+"px");
+                              
+                          })
+                          .on("mouseout",function(d){
+                              tooltip.style("opacity",0);
+                          })
+                      })
+      
+                  //图例数组，格式可自定义
+              var data_legend = [
+                      {
+                          "name":"0<= RCA <= 0.5",
+                          "color":"rgb(244,220,253)"
+                      },
+                      {
+                          "name":"0.5 <= RCA < 1",
+                          "color":"rgb(194,153,205)"
+                      },
+                      {
+                          "name":"1<= RCA < 5",
+                          "color":"rgb(192,111,152)"
+                      },
+                      {
+                          "name":"5<= RCA < 10",
+                          "color":"rgb(173,101,152)"
+                      },
+                      {
+                          "name":"RCA >= 10",
+                          "color":"rgb(129,92,148)"
+                      }
+                  ];  
+              //初始化图例，将data_legend与图例绑定
+              var legend = svg.selectAll("#card1 legend") 
+                      .data(data_legend)
+                      .enter()
+                      .append("g")
+                      .attr("class", "legend")
+                      .attr("transform", function(d, i) { return "translate(-300," + (i * 30 - 250) + ")"; });  //transform属性便是整个图例的坐标
+                  
+                  //绘制文字后方的颜色框或线
+                  legend.append("rect")
+                      .attr("x", w - 15) //width是svg的宽度，x属性用来调整位置
+                      // .attr("x", (width / 160) * 157)  
+                      //或者可以用width的分数来表示，更稳定一些，这是我试出来的，下面同
+                      .attr("y", 5)
+                      .attr("width", 50)
+                      .attr("height", 10) //设低一些就是线，高一些就是面，很好理解
+                      .style("fill", function(d){
+                          return d.color
+                      });
+                  
+                  //绘制图例文字
+                  legend.append("text")
+                      .attr("x", w - 30)
+                      // .attr("x", (width / 40) * 39)
+                      .attr("y", 15)
+                      .style("text-anchor", "end") //样式对齐
+                      .style("font-size","35")
+                      .text(function(d) { 
+                          return d.name;
+                      });
+                        
+                      
+              </script>
+              <!-- End Line CHart -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-6">
+          <div class="card" id="card2">
+            <div class="card-body">
+              <h5 class="card-title">卫生政策与服务 Health Policy and Services</h5>
+
+              <div class="text-center">
+              <div class="position-relative">
+              <!-- Line Chart -->
+              <script type="text/javascript" src="./project/原始数据/d3.js"></script>
+              <script type="text/javascript">
+                  
+                  var w=1500;
+                  var h=800;
+                  var projection = d3.geoMercator()
+                                      .scale(180)
+                                      .translate([w/2,h/2]);
+      
+                  var path = d3.geoPath()
+                      .projection(projection);
+      
+                  var svg2 = d3.select("#card2")
+                      .append("svg")
+                      .attr("width","100%")
+                      .attr("height",h)
+                      .attr("viewBox","0 0 1500 800");
+      
+                  //添加提示框
+                  var tooltip2 = d3.select("#card2")
+                                  .append("div")
+                                  .attr("class", "tooltip")
+                                  .style("opacity",0)
+      
+                  d3.json("data/He_new.json",function(json){
+                      svg2.selectAll("path")
+                          .data(json.features)
+                          .enter()
+                          .append("path")
+                          .attr("d",path)
+                          .attr("stroke","black")
+                          .style('stroke-width','0.5px')
+                          .style("fill",function(d){
+                              var value  = d.color
+                              return value
+                          })
+                          .on("mouseover",function(d,i){
+                              tooltip.style("opacity",1);
+                              tooltip.html(d.properties.name+"\n"+":" +"\n"+ d.value);
+                              
+                          })
+                          .on("mousemove",function(d){
+                              tooltip.style("left",(d3.event.pageX - 360)+"px")
+                                  .style("top",(d3.event.pageY - 140)+"px");
+                              
+                          })
+                          .on("mouseout",function(d){
+                              tooltip.style("opacity",0);
+                          })
+                      })
+      
+                  //图例数组，格式可自定义
+                  var data_legend = [
+                      {
+                          "name":"0<= RCA <= 0.5",
+                          "color":"rgb(244,220,253)"
+                      },
+                      {
+                          "name":"0.5 <= RCA < 1",
+                          "color":"rgb(194,153,205)"
+                      },
+                      {
+                          "name":"1<= RCA < 5",
+                          "color":"rgb(192,111,152)"
+                      },
+                      {
+                          "name":"5<= RCA < 10",
+                          "color":"rgb(173,101,152)"
+                      },
+                      {
+                          "name":"RCA >= 10",
+                          "color":"rgb(129,92,148)"
+                      }
+                  ];  
+              //初始化图例，将data_legend与图例绑定
+              var legend = svg2.selectAll("#card1 legend") 
+                      .data(data_legend)
+                      .enter()
+                      .append("g")
+                      .attr("class", "legend")
+                      .attr("transform", function(d, i) { return "translate(-300," + (i * 30 - 250) + ")"; });  //transform属性便是整个图例的坐标
+                  
+                  //绘制文字后方的颜色框或线
+                  legend.append("rect")
+                      .attr("x", w - 15) //width是svg的宽度，x属性用来调整位置
+                      // .attr("x", (width / 160) * 157)  
+                      //或者可以用width的分数来表示，更稳定一些，这是我试出来的，下面同
+                      .attr("y", 5)
+                      .attr("width", 50)
+                      .attr("height", 10) //设低一些就是线，高一些就是面，很好理解
+                      .style("fill", function(d){
+                          return d.color
+                      });
+                  
+                  //绘制图例文字
+                  legend.append("text")
+                      .attr("x", w - 30)
+                      // .attr("x", (width / 40) * 39)
+                      .attr("y", 15)
+                      .style("text-anchor", "end") //样式对齐
+                      .style("font-size","35")
+                      .text(function(d) { 
+                          return d.name;
+                      });
+                      
+              </script>
+              <!-- End Line CHart -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
